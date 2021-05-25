@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute vec3 a_position;
+uniform mat4 u_mvpMatrix;
+
+void
+main()
+{
+    gl_Position = u_mvpMatrix * vec4(a_position, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform vec3 u_color;
+
+void
+main()
+{
+    gl_FragColor = vec4( u_color, 1.0 );
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="orrery-3d-baseline.js"></script>
+<script type="text/javascript" src="trackball.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="1024" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<br>
+<button id="inc-dpf">Inc DPF</button>
+<button id="dec-dpf">Dec DPF</button>
+
+<br><br>
+<form>
+    <input type="radio" name="function" id="orbon" checked>Orbit On
+    <input type="radio" name="function" id="orboff">Orbit Off
+</form>
+<form>
+    <input type="radio" name="function" id="dayon" checked>Day On
+    <input type="radio" name="function" id="dayoff">Day Off
+</form>
+<form>
+    <input type="radio" name="function" id="animon" checked>Animation On
+    <input type="radio" name="function" id="animoff">Animation Off
+</form>
+<!--- The statistics are printed here. --->
+<p id="printDay"></p>
+
+</body>
+</html>
